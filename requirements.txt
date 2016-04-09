@@ -1,1 +1,2 @@
-echo pubnub
+Django==1.9.5
+pubnub=3.7.6
