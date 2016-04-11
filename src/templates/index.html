@@ -1,0 +1,32 @@
+<!--DOCTYPE html-->
+<html>
+<h1>Current Price</h1>
+
+<body>
+<button onclick='$("#func").html("")'>Button</button>
+<script src="https://cdn.pubnub.com/pubnub-3.14.5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/min.js/0.2.3/$.min.js"></script>
+<script>(function(){
+	// var cipher_key = "{{ ckey }}";
+	
+	var pubnub = PUBNUB.init({
+		subscribe_key = "{{ subkey }}"
+	});
+
+	pubnub.subscribe({
+		channel : "{{ notification_channel }}",
+		callback: display_ouput
+	});
+
+	function display_output(message){
+		time = new Date;
+		h = time.getHours();
+		m = time.getMinutes();
+		formatted_time = h + ":" + m;
+		$('#func').append("Received at " + formatted_time + "<br/>" + message + "</p>");
+	}
+	
+})
+</script>
+</body>
+</html>
